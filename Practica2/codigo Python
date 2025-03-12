@@ -1,0 +1,170 @@
+import math
+
+class Punto:
+def init(self, x, y):
+self.x = x
+self.y = y
+
+def _str_(self):
+    return f"({self.x}, {self.y})"
+class Linea:
+def init(self, p1, p2):
+self.p1 = p1
+self.p2 = p2
+
+def _str_(self):
+    return f"Línea: {self.p1} -> {self.p2}"
+
+def dibujaLinea(self):
+    print(f"Dibujando línea de {self.p1} a {self.p2}")
+
+def calcularCentro(self):
+    """Calcula el punto medio de la línea"""
+    x_centro = (self.p1.x + self.p2.x) / 2
+    y_centro = (self.p1.y + self.p2.y) / 2
+    return Punto(x_centro, y_centro)
+
+def calcularRadio(self):
+    """Calcula la distancia entre p1 y p2 como radio"""
+    return math.sqrt((self.p2.x - self.p1.x) ** 2 + (self.p2.y - self.p1.y) ** 2)
+class Circulo:
+def init(self, centro, radio):
+self.centro = centro
+self.radio = radio
+
+def _str_(self):
+    return f"Círculo: centro {self.centro}, radio {self.radio:.2f}"
+
+def dibujaCirculo(self):
+    print(f"Dibujando círculo con centro en {self.centro} y radio {self.radio:.2f}")
+def obtener_punto(nombre):
+"""Función para obtener un punto desde la entrada del usuario"""
+x = float(input(f"Ingrese la coordenada x de {nombre}: "))
+y = float(input(f"Ingrese la coordenada y de {nombre}: "))
+return Punto(x, y)
+
+def main():
+print("Ingrese los datos para la línea:")
+p1 = obtener_punto("Punto 1")
+p2 = obtener_punto("Punto 2")
+linea = Linea(p1, p2)
+
+centro = linea.calcularCentro()
+radio = linea.calcularRadio()
+circulo = Circulo(centro, radio)
+
+print("\nObjetos creados:")
+print(linea)
+linea.dibujaLinea()
+
+print(circulo)
+circulo.dibujaCirculo()
+if name == "main":
+main()
+
+#Codigo en java
+import java.util.Scanner;
+
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+
+    System.out.println("Ingrese las coordenadas de x1 y y1:");
+    System.out.print("x1: ");
+    float x1 = scanner.nextFloat();
+    System.out.print("y1: ");
+    float y1 = scanner.nextFloat();
+
+    System.out.println("Ingrese las coordenadas de x2 y y2:");
+    System.out.print("x2: ");
+    float x2 = scanner.nextFloat();
+    System.out.print("y2: ");
+    float y2 = scanner.nextFloat();
+
+    Punto p1 = new Punto(x1, y1);
+    Punto p2 = new Punto(x2, y2);
+    Linea linea = new Linea(p1, p2);
+
+    Punto centro = linea.calcularCentro();
+    float radio = linea.calcularRadio();
+    Circulo circulo = new Circulo(centro, radio);
+
+    System.out.println("\nResultado:");
+    System.out.println(linea);
+    linea.dibujaLinea();
+
+    System.out.println(circulo);
+    circulo.dibujaCirculo();
+
+    scanner.close();
+}
+}
+
+class Punto {
+public float x;
+public float y;
+
+public Punto(float x, float y) {
+    this.x = x;
+    this.y = y;
+}
+
+public float getX() {
+    return x;
+}
+
+public float getY() {
+    return y;
+}
+
+public String toString() {
+    return "(" + x + ", " + y + ")";
+}
+}
+
+class Linea {
+public Punto p1;
+public Punto p2;
+
+public Linea(Punto p1, Punto p2) {
+    this.p1 = p1;
+    this.p2 = p2;
+}
+
+public Punto calcularCentro() {
+    float xCentro = (p1.getX() + p2.getX()) / 2;
+    float yCentro = (p1.getY() + p2.getY()) / 2;
+    return new Punto(xCentro, yCentro);
+}
+
+public float calcularRadio() {
+    float dx = p2.getX() - p1.getX();
+    float dy = p2.getY() - p1.getY();
+    return (float) Math.sqrt(dx * dx + dy * dy);
+}
+
+public String toString() {
+    return "Línea: " + p1 + " -> " + p2;
+}
+
+public void dibujaLinea() {
+    System.out.println("línea de " + p1 + " a " + p2);
+}
+}
+
+class Circulo {
+private final Punto centro;
+private final float radio;
+
+public Circulo(Punto centro, float radio) {
+    this.centro = centro;
+    this.radio = radio;
+}
+
+public String toString() {
+    return "Círculo: centro " + centro + ", radio " + String.format("%.2f", radio);
+}
+
+public void dibujaCirculo() {
+    System.out.println("círculo con centro en " + centro + " y radio " + String.format("%.2f", radio));
+}
